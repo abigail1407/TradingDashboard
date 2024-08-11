@@ -1,0 +1,36 @@
+{
+  "global": {
+    "tabEnableClose": true
+  },
+  "borders": [],
+  "layout": {
+    "type": "row",
+    "weight": 100,
+    "children": [
+      {
+        "type": "tabset",
+        "weight": 70,
+        "selected": 0,
+        "children": [
+          {
+            "type": "tab",
+            "name": "Price Chart",
+            "component": "PriceChart"
+          }
+        ]
+      },
+      {
+        "type": "tabset",
+        "weight": 30,
+        "selected": 0,
+        "children": [
+          {
+            "type": "tab",
+            "name": "Order Book",
+            "component": "OrderBook"
+          }
+        ]
+      }
+    ]
+  }
+}
