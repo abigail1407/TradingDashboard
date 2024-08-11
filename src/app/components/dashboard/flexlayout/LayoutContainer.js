@@ -1,12 +1,11 @@
 import React from 'react';
 import { Layout, Model } from 'flexlayout-react';
 import 'flexlayout-react/style/dark.css';
-import layoutConfig from './layoutConfig.json'; // Your layout configuration
+import layoutConfig from './layoutConfig.json'; 
 import OrderBook from '../OrderBook';
 import PriceChart from '../PriceChart';
 
 const LayoutContainer = ({ selectedPair }) => {
-  // Factory function to render components based on layout config
   const factory = (node) => {
     const component = node.getComponent();
     switch (component) {
@@ -22,8 +21,8 @@ const LayoutContainer = ({ selectedPair }) => {
   return (
     <div className="dashboard-content c-gray">
       <Layout
-        model={Model.fromJson(layoutConfig)} // Initialize the layout model with the config
-        factory={factory} // Component factory function
+        model={Model.fromJson(layoutConfig)}
+        factory={factory}
       />
     </div>
   );

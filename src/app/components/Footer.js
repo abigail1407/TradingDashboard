@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 const Footer = () => {
   useEffect(() => {
-    // Create a script element for the TradingView widget
     const script = document.createElement('script');
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
     script.async = true;
@@ -21,10 +20,7 @@ const Footer = () => {
       locale: "en"
     });
 
-    // Append the script to the document body
-    document.body.appendChild(script);
-
-    // Cleanup script on component unmount
+    document.body.appendChild(script);                                                                                                                                                                                              
     return () => {
       document.body.removeChild(script);
     };

@@ -63,7 +63,7 @@ const TopOfBook = ({ onPairChange }) => {
 
   return (
     <div className="top-of-book flex">
-      <div className="w-full max-w-sm flex items-center">
+      <div className="top-con w-full max-w-sm flex items-center">
         <div className="select-container flex">
           <div className="select-icon">
             <Image
@@ -87,7 +87,7 @@ const TopOfBook = ({ onPairChange }) => {
           </select>
         </div>
 
-        <div className="ml-8 flex">
+        <div className="book-data ml-8 flex">
           <DataDisplay
             conData={'w-150'}
             title="Best Bid"

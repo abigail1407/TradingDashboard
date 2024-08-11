@@ -6,7 +6,6 @@ const OrderBook = ({ pair }) => {
   const [aggregationIncrement, setAggregationIncrement] = useState(0); // Default to no aggregation
   const [loading, setLoading] = useState(true);
 
-  // Handle incoming WebSocket updates
   const handleUpdate = useCallback((data) => {
     if (!data || data.type !== 'l2update') return;
 
@@ -48,7 +47,6 @@ const OrderBook = ({ pair }) => {
     return aggregated;
   };
 
-  // Calculate spread from aggregated data
   const getSpread = () => {
     const buyPrices = Object.keys(orderBook.buy).map(price => parseFloat(price));
     const sellPrices = Object.keys(orderBook.sell).map(price => parseFloat(price));
@@ -67,7 +65,6 @@ const OrderBook = ({ pair }) => {
     return { spread, percentageSpread };
   };
 
-  // Render a single side of the order book
   const renderOrderBookList = useCallback((side) => {
     // Sort by price in descending order and slice to get the latest 20 entries
     const sortedEntries = Object.entries(orderBook[side])
@@ -97,19 +94,16 @@ const OrderBook = ({ pair }) => {
     );
   }, [orderBook]);
 
-  // Get color class based on size and side
   const getColorClass = (size, side) => {
     const threshold = 10;
     const color = size > threshold ? 'bright' : 'dark';
     return side === 'buy' ? `${color}-green` : `${color}-red`;
   };
 
-  // Handle dropdown change
   const handleDropdownChange = (event) => {
     setAggregationIncrement(parseFloat(event.target.value));
   };
 
-  // Increase aggregation increment
   const increaseIncrement = () => {
     setAggregationIncrement(prev => {
       const newValue = prev + 0.01;
@@ -117,7 +111,6 @@ const OrderBook = ({ pair }) => {
     });
   };
 
-  // Decrease aggregation increment
   const decreaseIncrement = () => {
     setAggregationIncrement(prev => {
       const newValue = prev - 0.01;
@@ -125,7 +118,6 @@ const OrderBook = ({ pair }) => {
     });
   };
 
-  // Generate dropdown options dynamically based on current increment
   const generateDropdownOptions = useMemo(() => {
     const options = [0, 0.01, 0.05, 0.10, 0.50];
     if (!options.includes(aggregationIncrement)) {
@@ -136,7 +128,6 @@ const OrderBook = ({ pair }) => {
 
   const maxOption = useMemo(() => Math.max(...generateDropdownOptions), [generateDropdownOptions]);
 
-  // Determine if buttons should be disabled
   const isIncrementDisabled = aggregationIncrement >= maxOption;
   const isDecrementDisabled = aggregationIncrement <= 0;
 
@@ -157,7 +148,7 @@ const OrderBook = ({ pair }) => {
 
   return (
     <div className="order-book bg-gray-800 text-white relative">
-      <div className="p-4 flex flex-col space-y-6">
+      <div className="order-con p-4 flex flex-col space-y-6">
         <div className="flex flex-col">
           <div className="flex justify-between text-gray-400 mb-2">
             <div className="text-left w-1/3">Price</div>
@@ -189,7 +180,7 @@ const OrderBook = ({ pair }) => {
         </div>
       </div>
 
-      <div className="p-4 flex justify-end items-center absolute bottom-0 right-0">
+      <div className="py-2 px-4 flex justify-end items-center">
         <label htmlFor="aggregation" className="block mr-2 text-gray-400">Aggregation</label>
         <div className="flex items-center">
           <button 
@@ -222,9 +213,8 @@ const OrderBook = ({ pair }) => {
   );
 };
 
-// Separate component for order side list
 const OrderSideList = React.memo(({ side, loading, renderOrderBookList }) => {
-  const colorClass = side === 'buy' ? 'border-green-500' : 'border-red-500';
+  const colorClass = side === 'buy' ? 'b-bright-green' : 'b-bright-red';
 
   return (
     <div className={`orders ${side}-orders relative transition-opacity duration-300 ease-in-out`}>

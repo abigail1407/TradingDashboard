@@ -2,6 +2,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #01192A;
+  background-repeat: no-repeat;
   color: white;
   margin: 0 auto;
 
@@ -179,6 +180,12 @@ body {
 .price-chart,
 .order-book {
   border: 1px solid #1A3040;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.order-con {
+  overflow-y: auto;
 }
 
 .price-chart {
@@ -196,23 +203,29 @@ body {
     position: relative;
     padding: 1rem;
     box-sizing: border-box;
-    height: 94%!important;
   }
 }
 
 .order-book {
-  min-width: 350px;
+  min-width: 370px;
+  min-height: 570px;
   height: 100%;
+  overflow-y: scroll;
+  position: relative;
 
   .orders {
-    max-height: 280px;
-    min-height: 280px;
-    overflow-y: auto;
+    max-height: 250px;
+    min-height: 220px;
+    margin-bottom: 2rem;
+    overflow-y: scroll;
   }
 
   .agg-dd{
     height: 40px;
     padding: 0px 5px;
+    /* position: absolute;
+    right: 1rem;
+    bottom: 1rem; */
   }
 }
 
@@ -229,8 +242,6 @@ body {
 .flexlayout__tab_button.flexlayout__tab_button_top.flexlayout__tab_button--selected {
   background-color: #0E2032;
 }
-
-
 
 html::-webkit-scrollbar {
   width: 12px; /* Width of the scrollbar */
