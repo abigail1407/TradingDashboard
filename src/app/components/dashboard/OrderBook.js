@@ -148,65 +148,67 @@ const OrderBook = ({ pair }) => {
 
   return (
     <div className="order-book bg-gray-800 text-white relative">
-      <div className="order-con p-4 flex flex-col space-y-6">
-        <div className="flex flex-col">
-          <div className="flex justify-between text-gray-400 mb-2">
-            <div className="text-left w-1/3">Price</div>
-            <div className="text-right w-1/3 px-2">Quantity</div>
-            <div className="text-right w-1/3 pl-2">Total</div>
-          </div>
-
-          <div className="flex flex-col w-full">
-            <OrderSideList
-              side="buy"
-              loading={loading}
-              renderOrderBookList={renderOrderBookList}
-              color="bright-green"
-            />
-
-            <div className="flex justify-between shadow-xl p-2 my-1 c-gray">
-              <div className="text-left w-1/3 text-gray-400">Spread</div>
-              <div className={`text-right w-1/3 px-2 ${spreadColorClass}`}>{spread}</div>
-              <div className={`text-right w-1/3 pl-2 ${percentageSpreadColorClass}`}>{percentageSpread}%</div>
+      <div className="order-container">
+        <div className="order-con p-4 flex flex-col space-y-6">
+          <div className="flex flex-col">
+            <div className="flex justify-between text-gray-400 mb-2">
+              <div className="text-left w-1/3">Price</div>
+              <div className="text-right w-1/3 px-2">Quantity</div>
+              <div className="text-right w-1/3 pl-2">Total</div>
             </div>
 
-            <OrderSideList
-              side="sell"
-              loading={loading}
-              renderOrderBookList={renderOrderBookList}
-              color="bright-red"
-            />
+            <div className="flex flex-col w-full">
+              <OrderSideList
+                side="buy"
+                loading={loading}
+                renderOrderBookList={renderOrderBookList}
+                color="bright-green"
+              />
+
+              <div className="flex justify-between shadow-xl p-2 my-1 c-gray">
+                <div className="text-left w-1/3 text-gray-400">Spread</div>
+                <div className={`text-right w-1/3 px-2 ${spreadColorClass}`}>{spread}</div>
+                <div className={`text-right w-1/3 pl-2 ${percentageSpreadColorClass}`}>{percentageSpread}%</div>
+              </div>
+
+              <OrderSideList
+                side="sell"
+                loading={loading}
+                renderOrderBookList={renderOrderBookList}
+                color="bright-red"
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="py-2 px-4 flex justify-end items-center">
-        <label htmlFor="aggregation" className="block mr-2 text-gray-400">Aggregation</label>
-        <div className="flex items-center">
-          <button 
-            onClick={decreaseIncrement} 
-            disabled={isDecrementDisabled}
-            className={`px-3 py-1 ${isDecrementDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-500'} text-white rounded-l transition`}
-          >
-            -
-          </button>
-          <select
-            id="aggregation"
-            value={aggregationIncrement}
-            onChange={handleDropdownChange}
-            className="agg-dd px-4 py-2 border border-gray-600 rounded bg-gray-700 text-white focus:outline-none transition"
-          >
-            {generateDropdownOptions.map(option => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
-          <button 
-            onClick={increaseIncrement} 
-            disabled={isIncrementDisabled}
-            className={`px-3 py-1 ${isIncrementDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-500'} text-white rounded-r transition`}
-          >
-            +
-          </button>
+        <div className="py-2 px-4 flex justify-end items-center">
+          <label htmlFor="aggregation" className="block mr-2 text-gray-400">Aggregation</label>
+          <div className="flex items-center">
+            <button 
+              onClick={decreaseIncrement} 
+              disabled={isDecrementDisabled}
+              className={`px-3 py-1 ${isDecrementDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-500'} text-white rounded-l transition`}
+            >
+              -
+            </button>
+            <select
+              id="aggregation"
+              value={aggregationIncrement}
+              onChange={handleDropdownChange}
+              className="agg-dd px-4 py-2 border border-gray-600 rounded bg-gray-700 text-white focus:outline-none transition"
+            >
+              {generateDropdownOptions.map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+            <button 
+              onClick={increaseIncrement} 
+              disabled={isIncrementDisabled}
+              className={`px-3 py-1 ${isIncrementDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-500'} text-white rounded-r transition`}
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
     </div>

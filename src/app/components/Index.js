@@ -4,6 +4,7 @@ import Header from './Header';
 import Dashboard from '../components/dashboard/Dashboard';
 import Footer from './Footer';
 import './../styles/style.css';
+import './../styles/mobile-responsive.css';
 
 const Home = () => {
   const [selectedPair, setSelectedPair] = useState('BTC-USD');

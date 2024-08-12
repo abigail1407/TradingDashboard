@@ -1,7 +1,17 @@
 const WS_URL = 'wss://ws-feed.pro.coinbase.com';
+const RECONNECT_DELAY = 1000;
 
 export const connectToSocket = (pair, handleUpdate) => {
-  const ws = new WebSocket(WS_URL);
+  let ws;
+
+  const connect = () => {
+    ws = new WebSocket(WS_URL);
+
+    ws.addEventListener('open', onOpen);
+    ws.addEventListener('message', onMessage);
+    ws.addEventListener('error', onError);
+    ws.addEventListener('close', onClose);
+  };
 
   const onOpen = () => {
     ws.send(JSON.stringify({
@@ -27,13 +37,13 @@ export const connectToSocket = (pair, handleUpdate) => {
   };
 
   const onClose = () => {
-    console.log('WebSocket connection closed');
+    console.log('WebSocket connection closed. Attempting to reconnect...');
+    setTimeout(() => {
+      connect();
+    }, RECONNECT_DELAY);
   };
 
-  ws.addEventListener('open', onOpen);
-  ws.addEventListener('message', onMessage);
-  ws.addEventListener('error', onError);
-  ws.addEventListener('close', onClose);
+  connect();
 
   return () => {
     ws.removeEventListener('open', onOpen);

@@ -88,45 +88,51 @@ const TopOfBook = ({ onPairChange }) => {
         </div>
 
         <div className="book-data ml-8 flex">
-          <DataDisplay
-            conData={'w-150'}
-            title="Best Bid"
-            value={tickerData.bestBid}
-            prefix="$"
-            colorClass={'text-green w-150'}
-          />
-          <DataDisplay
-            conData={'w-80'}
-            title="Size"
-            value={tickerData.bestBidSize}
-            colorClass={'text-green w-80'}
-          />
-          <DataDisplay
-            conData={'w-150'}
-            title="Best Ask"
-            value={tickerData.bestAsk}
-            prefix="$"
-            colorClass={'text-red'}
-          />
-          <DataDisplay
-            conData={'w-80'}
-            title="Size"
-            value={tickerData.bestAskSize}
-            colorClass={'text-red'}
-          />
-          <DataDisplay
-            conData={'w-80'}
-            title="Spread"
-            value={tickerData.spread !== null ? tickerData.spread.toFixed(2) : 'N/A'}
-            formatNumber={false}
-            colorClass={getSpreadColorClass()}
-          />
-          <DataDisplay
-            conData={'w-150'}
-            title="24-Hour Volume"
-            value={tickerData.volume24h}
-            colorClass={'text-orange'}
-          />
+          <div className="dis-con">
+            <DataDisplay
+              conData={'w-150'}
+              title="Best Bid"
+              value={tickerData.bestBid}
+              prefix="$"
+              colorClass={'text-green w-150'}
+            />
+            <DataDisplay
+              conData={'w-80'}
+              title="Size"
+              value={tickerData.bestBidSize}
+              colorClass={'text-green w-80'}
+            />
+          </div>
+          <div className="dis-con">
+            <DataDisplay
+              conData={'w-150'}
+              title="Best Ask"
+              value={tickerData.bestAsk}
+              prefix="$"
+              colorClass={'text-red'}
+            />
+            <DataDisplay
+              conData={'w-80'}
+              title="Size"
+              value={tickerData.bestAskSize}
+              colorClass={'text-red'}
+            />
+          </div>
+          <div className="dis-con">
+            <DataDisplay
+              conData={'w-80'}
+              title="Spread"
+              value={tickerData.spread !== null ? tickerData.spread.toFixed(2) : ''}
+              formatNumber={false}
+              colorClass={getSpreadColorClass()}
+            />
+            <DataDisplay
+              conData={'w-150'}
+              title="24-Hour Volume"
+              value={tickerData.volume24h}
+              colorClass={'text-orange'}
+            />
+          </div>
         </div>
       </div>
     </div>

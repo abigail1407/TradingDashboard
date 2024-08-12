@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, memo } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const PriceChart = ({ symbol }) => {
   const container = useRef(null);
@@ -9,7 +9,8 @@ const PriceChart = ({ symbol }) => {
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
     script.type = 'text/javascript';
     script.async = true;
-    script.innerHTML = JSON.stringify({
+
+    const widgetConfig = {
       autosize: true,
       symbol: symbol || 'BTC-USD',
       interval: 'D',
@@ -18,20 +19,22 @@ const PriceChart = ({ symbol }) => {
       style: '1',
       locale: 'en',
       backgroundColor: '#01192A',
-      gridColor: 'rgba(42, 46, 57, 0.06)',
+      gridColor: 'rgba(14, 32, 50, 0.06)',
       allow_symbol_change: false,
       withdateranges: 'true',
       range: '12M',
       calendar: false,
-      support_host: 'https://www.tradingview.com'
-    });
+      support_host: 'https://www.tradingview.com',
+    };
+
+    script.innerHTML = JSON.stringify(widgetConfig);
 
     const currentContainer = container.current;
+
     if (currentContainer) {
       currentContainer.innerHTML = '';
       currentContainer.appendChild(script);
     }
-
     return () => {
       if (currentContainer) {
         currentContainer.innerHTML = '';
@@ -45,7 +48,6 @@ const PriceChart = ({ symbol }) => {
         <div className="tradingview-widget-container__widget"></div>
         <div className="tradingview-widget-copyright">
           <a href="https://www.tradingview.com/" rel="noopener noreferrer" target="_blank">
-            <span className="blue-text">Track all markets on TradingView</span>
           </a>
         </div>
       </div>
