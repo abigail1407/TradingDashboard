@@ -12,7 +12,6 @@ const Header = ({ selectedPair, onPairChange }) => (
       alt="icon"
       width={40}
       height={40}
-      priority
     />
     <TopOfBook selectedPair={selectedPair} onPairChange={onPairChange} />
     <Image 
