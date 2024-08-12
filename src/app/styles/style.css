@@ -49,12 +49,13 @@ body {
 }
 
 .header {
-  display: flex;
-  max-height: 90px;
+  min-height: 90px;
   padding: 1rem 2rem;
   max-width: 2200px;
   margin: 0 auto;
   position: relative;
+  display: -webkit-flex; /* Safari */
+  display: flex;
 
   &.dark {
     box-shadow: 0 0 10px #1A3040;
