@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { connectToSocket } from '../coinbaseWebSocket';
 
 const OrderBook = ({ pair }) => {
@@ -118,11 +118,15 @@ const OrderBook = ({ pair }) => {
     });
   };
 
-  const generateDropdownOptions = [0, 0.01, 0.05, 0.10, 0.50].map(option => {
-    return option === aggregationIncrement ? null : option;
-  }).filter(Boolean);
+  const generateDropdownOptions = useMemo(() => {
+    const options = [0, 0.01, 0.05, 0.10, 0.50];
+    if (!options.includes(aggregationIncrement)) {
+      options.push(parseFloat(aggregationIncrement.toFixed(2)));
+    }
+    return Array.from(new Set(options)).sort((a, b) => a - b);
+  }, [aggregationIncrement]);
 
-  const maxOption = Math.max(...generateDropdownOptions, 0);
+  const maxOption = useMemo(() => Math.max(...generateDropdownOptions), [generateDropdownOptions]);
 
   const isIncrementDisabled = aggregationIncrement >= maxOption;
   const isDecrementDisabled = aggregationIncrement <= 0;
@@ -211,7 +215,7 @@ const OrderBook = ({ pair }) => {
   );
 };
 
-const OrderSideList = ({ side, loading, renderOrderBookList }) => {
+const OrderSideList = React.memo(({ side, loading, renderOrderBookList }) => {
   const colorClass = side === 'buy' ? 'b-bright-green' : 'b-bright-red';
 
   return (
@@ -227,6 +231,8 @@ const OrderSideList = ({ side, loading, renderOrderBookList }) => {
       )} 
     </div>
   );
-};
+});
+
+OrderSideList.displayName = 'OrderSideList';
 
 export default OrderBook;
