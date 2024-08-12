@@ -1,0 +1,64 @@
+@media (max-width: 1155px) {
+  .App {
+    margin-bottom: 3rem;
+  }
+  .header {
+    max-height: max-content;
+    height: 120px;
+    padding-bottom: 0;
+    position: relative;
+  }
+
+  .icon, .logo {
+    display: flex;
+    align-self: baseline;
+  }
+  
+  .top-of-book {
+    align-items: baseline;
+
+    .top-con {
+      .book-data {
+        margin: 0 auto;
+        position: absolute;
+        left: 2rem;
+        top: 80px;
+        width: calc(100% - 3rem);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px){
+  body {
+    min-height: 980px;
+  }
+
+  .header {
+    height: 210px;
+  }
+
+  .data-container {
+    display: block;
+
+    &.w-80 {
+      width: 150px;
+    }   
+  }
+
+  .top-of-book {
+    .top-con {
+      display: block;
+      .book-data {
+        display: block;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 490px) {
+  .logo {
+    display: none;
+  }
+}
