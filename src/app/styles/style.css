@@ -42,7 +42,6 @@ body {
 }
 
 .App {
-  /* height: calc(88vh + 2rem); */
   height: 95%;
   display: block;
   position: relative;

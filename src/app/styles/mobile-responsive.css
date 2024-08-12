@@ -5,6 +5,7 @@
   .header {
     max-height: max-content;
     height: 120px;
+    min-height: 120px;
     padding-bottom: 0;
     position: relative;
   }
@@ -36,6 +37,7 @@
 
   .header {
     height: 210px;
+    min-height: 210px;
   }
 
   .data-container {
