@@ -12,7 +12,6 @@ body {
   }
 }
 
-/* Base Colors */
 .bright-green {
   color: #4ACD41;
 }
@@ -53,7 +52,7 @@ body {
   max-width: 2200px;
   margin: 0 auto;
   position: relative;
-  display: -webkit-flex; /* Safari */
+  display: -webkit-flex;
   display: flex;
 
   &.dark {
