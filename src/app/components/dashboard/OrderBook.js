@@ -43,7 +43,6 @@ const OrderBook = ({ pair }) => {
         aggregated[side][aggregatedPrice] = (aggregated[side][aggregatedPrice] || 0) + size;
       });
     });
-
     return aggregated;
   };
 
