@@ -44,7 +44,7 @@ const TopOfBook = ({ onPairChange }) => {
       }
     })
     .then((response) => {
-      const ids = response.data.map(item => item.id);
+      const ids = response.data.map(item => item.id).sort();
       setPairOptions(ids);
     })
     .catch((error) => {
