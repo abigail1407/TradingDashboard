@@ -111,6 +111,7 @@ body {
     background-position: calc(100% - 20px) calc(1em + 5px), calc(100% - 10px) calc(1em + 5px), calc(100% - 2.5em) 0.5em;
     background-size: 10px 10px, 10px 10px, 0 0.5em;
     background-repeat: no-repeat;
+    min-width: 238px;
   }
   
   .selected-icon {

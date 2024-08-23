@@ -5,14 +5,7 @@ import Image from 'next/image';
 import { connectToSocket } from './coinbaseWebSocket';
 import defaultIcon from '../icons/BTC-USD.png';
 import DataDisplay from '../components/proptypes/DataDisplay';
-
-const getIconSrc = (pair) => {
-  try {
-    return require(`../icons/${pair}.png`).default;
-  } catch {
-    return defaultIcon;
-  }
-};
+import axios from 'axios';
 
 const TopOfBook = ({ onPairChange }) => {
   const [selectedPair, setSelectedPair] = useState('BTC-USD');
@@ -24,8 +17,7 @@ const TopOfBook = ({ onPairChange }) => {
     spread: null,
     volume24h: null,
   });
-
-  const options = ['BTC-USD', 'ETH-USD', 'LTC-USD', 'BCH-USD'];
+  const [options, setPairOptions] = useState([]);
 
   const handleUpdate = useCallback((data) => {
     if (data.type === 'ticker') {
@@ -43,6 +35,24 @@ const TopOfBook = ({ onPairChange }) => {
   }, []);
 
   useEffect(() => {
+    axios.request({
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://api.exchange.coinbase.com/products',
+      headers: { 
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      const ids = response.data.map(item => item.id);
+      setPairOptions(ids);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
+  useEffect(() => {
     if (!selectedPair) return;
 
     const cleanup = connectToSocket(selectedPair, handleUpdate);
@@ -54,6 +64,14 @@ const TopOfBook = ({ onPairChange }) => {
     const newPair = event.target.value;
     setSelectedPair(newPair);
     if (onPairChange) onPairChange(newPair);
+  };
+
+  const getIconSrc = (pair) => {
+    try {
+      return require(`../icons/${pair}.png`).default;
+    } catch {
+      return defaultIcon;
+    }
   };
 
   const getSpreadColorClass = () => {
@@ -87,7 +105,7 @@ const TopOfBook = ({ onPairChange }) => {
           </select>
         </div>
 
-        <div className="book-data ml-8 flex">
+        <div className="book-data ml-16 flex">
           <div className="dis-con">
             <DataDisplay
               conData={'w-150'}

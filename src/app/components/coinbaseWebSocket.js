@@ -1,4 +1,4 @@
-const WS_URL = 'wss://ws-feed.pro.coinbase.com';
+const WS_URL = 'wss://ws-feed.exchange.coinbase.com/';
 const RECONNECT_DELAY = 1000;
 
 export const connectToSocket = (pair, handleUpdate) => {
