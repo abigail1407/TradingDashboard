@@ -14,14 +14,6 @@ const Header = ({ selectedPair, onPairChange }) => (
       height={40}
     />
     <TopOfBook selectedPair={selectedPair} onPairChange={onPairChange} />
-    <Image 
-      className="logo inline-flex self-center absolute right-8" 
-      src="/logo.png" 
-      alt="logo"
-      width={200}
-      height={200}
-      priority
-    />
   </div>
 );
 

@@ -5,10 +5,22 @@ const OrderBook = ({ pair }) => {
   const [orderBook, setOrderBook] = useState({ buy: {}, sell: {} });
   const [aggregationIncrement, setAggregationIncrement] = useState(0); // Default to no aggregation
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // New state for error handling
 
   const handleUpdate = useCallback((data) => {
-    if (!data || data.type !== 'l2update') return;
+    if (!data) return;
 
+    // Handle error messages
+    if (data.type === 'error') {
+      setError(`${data.message} - ${data.reason}`);
+      setLoading(false);
+      return;
+    }
+
+    // Proceed only if it's a valid l2update type
+    if (data.type !== 'l2update') return;
+
+    setError(null); // Clear any previous errors if a valid update is received
     setLoading(true);
 
     setOrderBook(prevOrderBook => {
@@ -126,7 +138,6 @@ const OrderBook = ({ pair }) => {
     return Array.from(new Set(options)).sort((a, b) => a - b);
   }, [aggregationIncrement]);
 
-
   const maxOption = useMemo(() => Math.max(...generateDropdownOptions), [generateDropdownOptions]);
 
   const isIncrementDisabled = aggregationIncrement >= maxOption;
@@ -149,6 +160,11 @@ const OrderBook = ({ pair }) => {
 
   return (
     <div className="order-book bg-gray-800 text-white relative">
+      {error && (
+        <div className="error-container bright-red mt-10 p-4 absolute top-0 left-0 w-full">
+          <div className="error-message text-center">{error}</div>
+        </div>
+      )}
       <div className="order-container">
         <div className="order-con p-4 flex flex-col space-y-6">
           <div className="flex flex-col">
@@ -229,7 +245,7 @@ const OrderSideList = React.memo(({ side, loading, renderOrderBookList }) => {
         <div className="opacity-100 transition-opacity duration-300 ease-in-out">
           {renderOrderBookList(side)}
         </div>
-      )} 
+      )}
     </div>
   );
 });

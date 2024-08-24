@@ -1,7 +1,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  background-color: #01192A;
+  background-color: #171B26;
   background-repeat: no-repeat;
   color: white;
   margin: 0 auto;
@@ -13,19 +13,19 @@ body {
 }
 
 .bright-green {
-  color: #4ACD41;
+  color: #0A9981;
 }
 
 .dark-green {
-  color: #2C7A3F;
+  color: #076656;
 }
 
 .bright-red {
-  color: #F1160D;
+  color: #F23545;
 }
 
 .dark-red {
-  color: #C51B05;
+  color: #ba0c1b;
 }
 
 .b-bright-green {
@@ -37,7 +37,7 @@ body {
 }
 
 .c-gray {
-  background-color: #0E2032;
+  background-color: #262d3f;
 }
 
 .App {
@@ -62,10 +62,6 @@ body {
   &.light {
     box-shadow: 0 0 10px #1A3040;
   }
-}
-
-.logo {
-  width: auto;
 }
 
 .top-of-book {
@@ -98,16 +94,16 @@ body {
   
   .select-box {
     appearance: none;
-    background-color: #358dd6;
+    background-color: #1AA1E4;
     border: 0;
-    color: #01192A;
+    color: #171B26;
     padding: 0px 40px 0px 60px;
     border-radius: 4px;
     font-size: 1rem;
     line-height: 1.5;
     cursor: pointer;
     font-weight: bold;
-    background-image: linear-gradient(45deg, transparent 50%, #2C70A9 50%), linear-gradient(135deg, #01192A 50%, transparent 50%);
+    background-image: linear-gradient(45deg, transparent 50%, #1AA1E4 50%), linear-gradient(135deg, #171B26 50%, transparent 50%);
     background-position: calc(100% - 20px) calc(1em + 5px), calc(100% - 10px) calc(1em + 5px), calc(100% - 2.5em) 0.5em;
     background-size: 10px 10px, 10px 10px, 0 0.5em;
     background-repeat: no-repeat;
@@ -125,7 +121,7 @@ body {
   }
   
   .select-container select:hover {
-    background-color: #2C70A9;
+    background-color: #1AA1E4;
   }
   
   .dropdown-item {
@@ -141,11 +137,11 @@ body {
   }
 
   .text-green {
-    color: #4ACD41;
+    color: #0A9981;
   }
 
   .text-red {
-    color: #F1160D;
+    color: #F23545;
   }
 
   .text-orange {
@@ -261,13 +257,13 @@ body {
 .price-chart,
 .flexlayout__splitter,
 .flexlayout__tab {
-  background-color: #01192A;
+  background-color: #171B26;
 }
 
 .flexlayout__tabset_tabbar_inner_tab_container.flexlayout__tabset_tabbar_inner_tab_container_top,
 .flexlayout__tab_toolbar,
 .flexlayout__tab_button.flexlayout__tab_button_top.flexlayout__tab_button--selected {
-  background-color: #0E2032;
+  background-color: #262d3f;
 }
 
 html::-webkit-scrollbar {
@@ -275,18 +271,18 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-track {
-  background: #0E2032;
+  background: #262d3f;
 }
 
 html::-webkit-scrollbar-thumb {
-  background: #0E2032;
+  background: #262d3f;
   border-radius: 8px;
-  border: 3px solid #0E2032;
+  border: 3px solid #262d3f;
 }
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: #4a5568 #0E2032;
+  scrollbar-color: #4a5568 #262d3f;
 }
 
 

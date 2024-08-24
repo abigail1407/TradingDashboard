@@ -18,7 +18,7 @@ const PriceChart = ({ symbol }) => {
       theme: 'dark',
       style: '1',
       locale: 'en',
-      backgroundColor: '#01192A',
+      backgroundColor: '#171B26',
       gridColor: 'rgba(14, 32, 50, 0.06)',
       allow_symbol_change: false,
       withdateranges: 'true',
